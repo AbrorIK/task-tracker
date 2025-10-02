@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Tracker</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/src/styles/general.css" />
+    <link rel="stylesheet" href="/src/styles/header.css" />
+    <link rel="stylesheet" href="/src/styles/toolbar.css" />
+  </head>
+  <body>
+    <script type="module" src="/src/main.ts"></script>
+    <div class="header">
+      <div class="left-section">
+        <div class="app-title">My Task Tracker</div>
+      </div>
+      <div class="middle-section">
+        <input class="search-bar" type="text" placeholder="Search..." />
+        <button class="search-button">
+          <img class="search-icon" src="./search.svg" />
+        </button>
+      </div>
+      <div class="right-section">
+        <div class="new-task-section">
+          <button class="new-task-button">+ New Task</button>
+        </div>
+        <div class="dark-mode-section">
+          <button class="light-mode-button">#</button>
+          <button class="dark-mode-button">@</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <!-- Left -->
+      <div class="filters">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="active">Active</button>
+        <button class="filter" data-filter="completed">Completed</button>
+      </div>
+
+      <!-- Middle -->
+      <div class="controls">
+        <select id="sort">
+          <option value="createdAt">Sort by Created</option>
+          <option value="dueDate">Sort by Due Date</option>
+          <option value="priority">Sort by Priority</option>
+        </select>
+
+        <select id="tagFilter">
+          <option value="all">All Tags</option>
+          <option value="work">#work</option>
+          <option value="home">#home</option>
+        </select>
+      </div>
+
+      <!-- Right -->
+      <div class="status">
+        <span id="taskCounter">2 of 5 remaining</span>
+      </div>
+    </div>
+  </body>
+</html>

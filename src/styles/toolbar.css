@@ -1,0 +1,41 @@
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 20px;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+}
+
+.filter {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+}
+
+.filter.active {
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+}
+
+.filter:hover {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+}
+
+.status {
+  font-size: 0.9rem;
+  color: #666;
+}
