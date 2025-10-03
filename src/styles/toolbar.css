@@ -32,10 +32,14 @@
 
 .controls {
   display: flex;
-  gap: 10px;
+  gap: 0.5rem;
 }
 
 .status {
   font-size: 0.9rem;
   color: #666;
+}
+
+.toolbar {
+  margin-bottom: 12px;
 }
