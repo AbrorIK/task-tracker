@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task Tracker</title>
+    <title>My Task Tracker</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -18,60 +18,68 @@
     <link rel="stylesheet" href="/src/styles/content.css" />
   </head>
   <body>
-    <script type="module" src="/src/main.ts"></script>
-    <div class="header">
+    <header class="header">
       <div class="left-section">
-        <div class="app-title">My Task Tracker</div>
+        <span class="app-title">My Task Tracker</span>
       </div>
+
       <div class="middle-section">
-        <input class="search-bar" type="text" placeholder="Search..." />
-        <button class="search-button">
-          <img class="search-icon" src="./search.svg" />
+        <input
+          class="search-bar"
+          type="search"
+          name="search"
+          placeholder="Search tasks"
+        />
+        <button class="search-button" type="button">
+          <img class="search-icon" src="./search.svg" alt="Search" />
         </button>
       </div>
+
       <div class="right-section">
         <div class="new-task-section">
-          <button class="new-task-button">+ New Task</button>
+          <button class="new-task-button" type="button">+ New Task</button>
         </div>
         <div class="dark-mode-section">
-          <button class="light-mode-button">🌞</button>
-          <button class="dark-mode-button">🌙</button>
+          <button class="light-mode-button" type="button">🌞</button>
+          <button class="dark-mode-button" type="button">🌙</button>
         </div>
       </div>
-    </div>
+    </header>
 
-    <div class="toolbar">
-      <!-- Left -->
+    <section class="toolbar">
       <div class="filters">
-        <button class="filter active" data-filter="all">All</button>
-        <button class="filter" data-filter="active">Active</button>
-        <button class="filter" data-filter="completed">Completed</button>
+        <button class="filter active" type="button" data-filter="all">
+          All
+        </button>
+        <button class="filter" type="button" data-filter="active">
+          Active
+        </button>
+        <button class="filter" type="button" data-filter="completed">
+          Completed
+        </button>
       </div>
 
-      <!-- Middle -->
       <div class="controls">
-        <select id="sort">
+        <select id="sort" name="sort">
           <option value="createdAt">Sort by Created</option>
           <option value="dueDate">Sort by Due Date</option>
           <option value="priority">Sort by Priority</option>
         </select>
 
-        <select id="tagFilter">
+        <select id="tagFilter" name="tag">
           <option value="all">All Tags</option>
           <option value="work">#work</option>
           <option value="home">#home</option>
         </select>
       </div>
 
-      <!-- Right -->
       <div class="status">
         <span id="taskCounter">2 of 5 remaining</span>
       </div>
-    </div>
+    </section>
 
-    <div class="content">
-      <div class="task-list">
-        <!-- Task card -->
+    <main class="content">
+      <section class="task-list">
         <div class="task-card">
           <div class="task-header">
             <div class="task-left">
@@ -79,8 +87,8 @@
               <h3 class="task-title">Fix broken build</h3>
             </div>
             <div class="task-actions">
-              <button class="icon-btn" title="Edit">✏️</button>
-              <button class="icon-btn" title="Delete">🗑️</button>
+              <button class="icon-btn" type="button">✏️</button>
+              <button class="icon-btn" type="button">🗑️</button>
             </div>
           </div>
           <div class="task-metadata">
@@ -98,11 +106,11 @@
           <div class="task-header">
             <div class="task-left">
               <span class="task-checkbox checked" aria-hidden="true"></span>
-              <h3 class="task-title"><a href="#">Update documentation</a></h3>
+              <h3 class="task-title">Update documentation</h3>
             </div>
             <div class="task-actions">
-              <button class="icon-btn" title="Edit">✏️</button>
-              <button class="icon-btn" title="Delete">🗑️</button>
+              <button class="icon-btn" type="button">✏️</button>
+              <button class="icon-btn" type="button">🗑️</button>
             </div>
           </div>
           <div class="task-metadata">
@@ -122,8 +130,8 @@
               <h3 class="task-title">Buy groceries</h3>
             </div>
             <div class="task-actions">
-              <button class="icon-btn" title="Edit">✏️</button>
-              <button class="icon-btn" title="Delete">🗑️</button>
+              <button class="icon-btn" type="button">✏️</button>
+              <button class="icon-btn" type="button">🗑️</button>
             </div>
           </div>
           <div class="task-metadata">
@@ -134,19 +142,21 @@
             <span class="tag">#home</span>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="edit-task">
+      <aside class="edit-task">
         <header class="panel-header">
           <h2>Edit Task</h2>
-          <button class="icon-btn" title="Close">✖</button>
+          <button class="icon-btn" type="button">✖</button>
         </header>
-        <form class="edit-form" action="#" method="post">
+
+        <form class="edit-form">
           <label class="form-field">
             <span class="label">Title</span>
             <input
               class="input"
               type="text"
+              name="title"
               placeholder="Task title"
               value="Buy groceries"
             />
@@ -156,6 +166,7 @@
             <span class="label">Notes</span>
             <textarea
               class="textarea"
+              name="notes"
               rows="3"
               placeholder="Notes..."
             ></textarea>
@@ -164,11 +175,16 @@
           <div class="form-row">
             <label class="form-field">
               <span class="label">Due Date</span>
-              <input class="input" type="date" value="2025-06-15" />
+              <input
+                class="input"
+                type="date"
+                name="dueDate"
+                value="2025-06-15"
+              />
             </label>
             <label class="form-field">
               <span class="label">Priority</span>
-              <select class="input">
+              <select class="input" name="priority">
                 <option>Low</option>
                 <option selected>Medium</option>
                 <option>High</option>
@@ -181,8 +197,9 @@
             <input
               class="input"
               type="text"
+              name="tags"
               placeholder="Add tags"
-              value="Bread  Cheese"
+              value="bread, cheese"
             />
           </label>
 
@@ -191,7 +208,9 @@
             <button type="button" class="ghost-btn">Cancel</button>
           </div>
         </form>
-      </div>
-    </div>
+      </aside>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

@@ -1,93 +1,105 @@
 .header {
-  height: 60px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: rgb(240, 240, 240);
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: var(--layout-gap);
+  padding: 0 24px;
+  height: 64px;
+  background: var(--panel-bg);
+  border-bottom: 1px solid var(--panel-border);
+  box-shadow: var(--panel-shadow);
+}
+
+.app-title {
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .left-section {
-  margin-left: 20px;
-  font-weight: 500;
-  font-size: 28px;
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
 }
 
 .middle-section {
   flex: 1;
-  margin-left: 30px;
-  margin-right: 30px;
-  max-width: 300px;
   display: flex;
   align-items: center;
+  gap: 8px;
+  max-width: 400px;
 }
 
 .search-bar {
   flex: 1;
-  height: 32px;
-  font-size: 16px;
-  border-width: 1px;
-  border-color: rgb(200, 200, 200);
-  border-radius: 6px;
-  width: 0;
-}
-
-.search-bar::placeholder {
-  font-size: 16px;
-  padding-left: 5px;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  background: transparent;
 }
 
 .search-button {
-  background: rgb(230, 230, 230);
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
   border: none;
-  margin-left: 8px;
-  height: 32px;
-  border-radius: 16px;
+  background: var(--panel-border);
+  transition: background var(--transition);
+}
+
+.search-button:hover {
+  background: rgba(37, 99, 235, 0.1);
 }
 
 .search-icon {
-  height: 20px;
-  margin-top: 4px;
+  width: 18px;
+  height: 18px;
 }
 
 .right-section {
   display: flex;
   align-items: center;
-  flex-shrink: 0;
-}
-
-.new-task-section {
-  margin-right: 10px;
+  gap: 12px;
 }
 
 .new-task-button {
-  background: rgb(0, 120, 215);
-  color: white;
+  padding: 0 16px;
+  height: 38px;
+  border-radius: 999px;
   border: none;
-  height: 32px;
-  width: 100px;
-  border-radius: 16px;
-  cursor: pointer;
+  font-weight: 500;
+  color: var(--text-on-primary);
+  background: var(--accent);
+  transition: background var(--transition);
+}
+
+.new-task-button:hover {
+  background: var(--accent-hover);
+}
+
+.dark-mode-section {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(148, 163, 184, 0.2);
+  padding: 4px;
+  border-radius: 999px;
 }
 
 .light-mode-button,
 .dark-mode-button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
   border: none;
-  height: 32px;
-  width: 32px;
-  border-radius: 16px;
-  cursor: pointer;
+  background: transparent;
 }
 
-.dark-mode-button {
-  margin-right: 20px;
-  background-color: rgb(5, 9, 116);
+.light-mode-button:hover,
+.dark-mode-button:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
