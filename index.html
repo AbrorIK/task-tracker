@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="/src/styles/header.css" />
     <link rel="stylesheet" href="/src/styles/toolbar.css" />
     <link rel="stylesheet" href="/src/styles/content.css" />
+
+    <script type="module" src="/src/main.ts" defer></script>
   </head>
   <body>
     <header class="header">
@@ -79,70 +81,7 @@
     </section>
 
     <main class="content">
-      <section class="task-list">
-        <div class="task-card">
-          <div class="task-header">
-            <div class="task-left">
-              <span class="task-checkbox" aria-hidden="true"></span>
-              <h3 class="task-title">Fix broken build</h3>
-            </div>
-            <div class="task-actions">
-              <button class="icon-btn" type="button">✏️</button>
-              <button class="icon-btn" type="button">🗑️</button>
-            </div>
-          </div>
-          <div class="task-metadata">
-            <span class="badge priority high">High</span>
-            <span class="badge due overdue">Overdue 05-10</span>
-            <span class="badge due">Due: 2025-05-10</span>
-          </div>
-          <div class="task-tags">
-            <span class="tag">#work</span>
-            <span class="tag">#frontend</span>
-          </div>
-        </div>
-
-        <div class="task-card completed">
-          <div class="task-header">
-            <div class="task-left">
-              <span class="task-checkbox checked" aria-hidden="true"></span>
-              <h3 class="task-title">Update documentation</h3>
-            </div>
-            <div class="task-actions">
-              <button class="icon-btn" type="button">✏️</button>
-              <button class="icon-btn" type="button">🗑️</button>
-            </div>
-          </div>
-          <div class="task-metadata">
-            <span class="badge priority low">Low</span>
-            <span class="badge due">Due: 2025-05-30</span>
-          </div>
-          <div class="task-tags">
-            <span class="tag">#docs</span>
-            <span class="tag">#admin</span>
-          </div>
-        </div>
-
-        <div class="task-card">
-          <div class="task-header">
-            <div class="task-left">
-              <span class="task-checkbox" aria-hidden="true"></span>
-              <h3 class="task-title">Buy groceries</h3>
-            </div>
-            <div class="task-actions">
-              <button class="icon-btn" type="button">✏️</button>
-              <button class="icon-btn" type="button">🗑️</button>
-            </div>
-          </div>
-          <div class="task-metadata">
-            <span class="badge priority medium">Medium</span>
-            <span class="badge due">Due: 2025-06-15</span>
-          </div>
-          <div class="task-tags">
-            <span class="tag">#home</span>
-          </div>
-        </div>
-      </section>
+      <section class="task-list"></section>
 
       <aside class="edit-task">
         <header class="panel-header">
@@ -210,7 +149,5 @@
         </form>
       </aside>
     </main>
-
-    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

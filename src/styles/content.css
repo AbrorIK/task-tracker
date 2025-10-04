@@ -121,12 +121,6 @@ main.content {
   color: var(--badge-low-text);
 }
 
-.badge.due.overdue {
-  background: var(--badge-overdue-bg);
-  border-color: var(--badge-overdue-border);
-  color: var(--badge-overdue-text);
-}
-
 .task-tags {
   display: inline-flex;
   flex-wrap: wrap;
