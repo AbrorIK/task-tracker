@@ -1,7 +1,7 @@
 import { Task } from "./model";
 import { renderTaskList } from "./taskList";
 
-const sampleTasks: Task[] = [
+let tasks: Task[] = [
   new Task({
     id: "1",
     title: "Fix broken build",
@@ -28,4 +28,21 @@ const sampleTasks: Task[] = [
   }),
 ];
 
-renderTaskList(sampleTasks);
+function handleToggleComplete(taskId: string, completed: boolean): void {
+  const task = tasks.find((item) => item.id === taskId);
+  if (task) task.completed = completed;
+}
+
+function handleDelete(taskId: string): void {
+  tasks = tasks.filter((task) => task.id !== taskId);
+  render();
+}
+
+function render(): void {
+  renderTaskList(tasks, {
+    onDelete: handleDelete,
+    onToggleComplete: handleToggleComplete,
+  });
+}
+
+render();

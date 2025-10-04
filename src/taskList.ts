@@ -1,6 +1,14 @@
 import type { Task } from "./model";
 
-export function renderTaskList(tasks: readonly Task[]): void {
+type RenderOptions = {
+  onDelete?: (taskId: string) => void;
+  onToggleComplete?: (taskId: string, completed: boolean) => void;
+};
+
+export function renderTaskList(
+  tasks: Task[],
+  options: RenderOptions = {}
+): void {
   const mainContent = document.querySelector<HTMLElement>("main.content");
   if (!mainContent) {
     throw new Error("Missing main.content container in the DOM");
@@ -47,7 +55,7 @@ export function renderTaskList(tasks: readonly Task[]): void {
         </div>
         <div class="task-actions">
           <button class="icon-btn" type="button">✏️</button>
-          <button class="icon-btn" type="button">🗑️</button>
+          <button class="icon-btn" type="button" data-action="delete">🗑️</button>
         </div>
       </div>
       <div class="task-metadata">
@@ -64,6 +72,17 @@ export function renderTaskList(tasks: readonly Task[]): void {
       checkbox.addEventListener("click", () => {
         const isChecked = checkbox.classList.toggle("checked");
         card.classList.toggle("completed", isChecked);
+        task.completed = isChecked;
+        options.onToggleComplete?.(task.id, isChecked);
+      });
+    }
+
+    const deleteButton = card.querySelector<HTMLButtonElement>(
+      'button[data-action="delete"]'
+    );
+    if (deleteButton) {
+      deleteButton.addEventListener("click", () => {
+        options.onDelete?.(task.id);
       });
     }
 
