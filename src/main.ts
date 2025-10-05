@@ -34,26 +34,27 @@ function handleToggleComplete(taskId: string, completed: boolean): void {
     if (task) task.completed = completed;
 }
 
-function handleDelete(taskId: string): void {
-    tasks = tasks.filter(task => task.id !== taskId);
-    render();
-}
-
-let currentTask = tasks[0];
+let currentTask: Task | null = tasks[0] ?? null;
 
 function render(): void {
     renderTaskList(tasks, {
         onDelete: handleDelete,
         onToggleComplete: handleToggleComplete,
+        onEdit: selectedTask => {
+            currentTask = selectedTask;
+            renderCurrentTaskEditor();
+        },
     });
+
+    renderCurrentTaskEditor();
 }
 
-render();
-
-function generateId(): string {
-    const now = Date.now().toString(36);
-    const rand = Math.random().toString(36).slice(2, 8);
-    return `${now}-${rand}`;
+function handleDelete(taskId: string): void {
+    tasks = tasks.filter(task => task.id !== taskId);
+    if (currentTask?.id === taskId) {
+        currentTask = tasks[0] ?? null;
+    }
+    render();
 }
 
 function handleSave(
@@ -66,19 +67,22 @@ function handleSave(
         tags: string[];
     },
 ): void {
-    tasks = tasks.filter(task => task.id !== originalTaskId);
+    const task = tasks.find(item => item.id === originalTaskId);
+    if (!task) return;
 
-    const newTask = new Task({
-        id: generateId(),
-        title: details.title,
-        notes: details.notes,
-        dueDate: details.dueDate,
-        priority: details.priority,
-        tags: details.tags,
-    });
-
-    tasks.push(newTask);
+    task.updateDetails(details);
     render();
 }
 
-renderEditSelectedTask(currentTask, handleSave);
+function renderCurrentTaskEditor(): void {
+    if (!currentTask) {
+        const panel = document.querySelector('.edit-task');
+        panel?.remove();
+        return;
+    }
+
+    const taskToEdit = currentTask;
+    renderEditSelectedTask(taskToEdit, editorDetails => handleSave(taskToEdit.id, editorDetails));
+}
+
+render();

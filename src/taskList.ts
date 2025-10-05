@@ -3,6 +3,7 @@ import type { Task } from './model';
 type RenderOptions = {
     onDelete?: (taskId: string) => void;
     onToggleComplete?: (taskId: string, completed: boolean) => void;
+    onEdit?: (task: Task) => void;
 };
 
 export function renderTaskList(tasks: Task[], options: RenderOptions = {}): void {
@@ -47,7 +48,7 @@ export function renderTaskList(tasks: Task[], options: RenderOptions = {}): void
           <h3 class="task-title">${task.title}</h3>
         </div>
         <div class="task-actions">
-          <button class="icon-btn" type="button">✏️</button>
+          <button class="icon-btn" type="button" data-action="edit">✏️</button>
           <button class="icon-btn" type="button" data-action="delete">🗑️</button>
         </div>
       </div>
@@ -75,6 +76,12 @@ export function renderTaskList(tasks: Task[], options: RenderOptions = {}): void
             });
         }
 
+        const editButton = card.querySelector<HTMLButtonElement>('button[data-action="edit"]');
+        if (editButton) {
+            editButton.addEventListener('click', () => {
+                options.onEdit?.(task);
+            });
+        }
         taskList.appendChild(card);
     }
 }

@@ -55,19 +55,14 @@ export function renderEditSelectedTask(
           <div class="form-row">
             <label class="form-field">
               <span class="label">Due Date</span>
-              <input
-                class="input"
-                type="date"
-                name="dueDate"
-                value="2025-06-15"
-              />
+              <input class="input" type="date" name="dueDate" />
             </label>
             <label class="form-field">
               <span class="label">Priority</span>
               <select class="input" name="priority">
-                <option>Low</option>
-                <option selected>Medium</option>
-                <option>High</option>
+                <option value="LOW">Low</option>
+                <option value="MEDIUM">Medium</option>
+                <option value="HIGH">High</option>
               </select>
             </label>
           </div>
@@ -79,7 +74,6 @@ export function renderEditSelectedTask(
               type="text"
               name="tags"
               placeholder="Add tags"
-              value="bread, cheese"
             />
           </label>
 
@@ -91,6 +85,27 @@ export function renderEditSelectedTask(
 
     const form = editTask.querySelector<HTMLFormElement>('.edit-form');
     if (!form) throw new Error('Missing .edit-form element');
+
+    const titleInput = form.querySelector<HTMLInputElement>('input[name="title"]');
+    if (!titleInput) throw new Error('Missing title input');
+    titleInput.value = task.title;
+
+    const notesField = form.querySelector<HTMLTextAreaElement>('textarea[name="notes"]');
+    if (!notesField) throw new Error('Missing notes textarea');
+    notesField.value = task.notes;
+
+    const dueDateField = form.querySelector<HTMLInputElement>('input[name="dueDate"]');
+    if (!dueDateField) throw new Error('Missing due date input');
+    dueDateField.value = task.dueDate ? task.dueDate.toISOString().slice(0, 10) : '';
+
+    const priorityField = form.querySelector<HTMLSelectElement>('select[name="priority"]');
+    if (!priorityField) throw new Error('Missing priority select');
+    priorityField.value = task.priority;
+
+    const tagsField = form.querySelector<HTMLInputElement>('input[name="tags"]');
+    if (!tagsField) throw new Error('Missing tags input');
+    tagsField.value = task.tags.join(', ');
+
     form.addEventListener('submit', event => {
         event.preventDefault();
 
